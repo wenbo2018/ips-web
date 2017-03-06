@@ -12,13 +12,8 @@
          http://www.springframework.org/schema/tx 
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<!-- 打开Spring的Annotation支持 -->
-	<context:annotation-config />
-	<!-- 设定Spring 去哪些包中找Annotation -->
-	<context:component-scan base-package="com.ips" />
 
-	<!-- 导入Src目录下的jdbc.properties文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -40,9 +35,43 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/config/sqlmap/sqlmap-config.xml"></property>
 		 </bean>
-	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	     <property name="mapperInterface" value="com.ips.dao.UserDao"></property>
+	<bean id="positioningDataDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	     <property name="mapperInterface" value="com.ips.dao.PositioningDataDao"></property>
 	     <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="rssIDataDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.RssIDataDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="dataCollectRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.DataCollectRecordDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="radioSignalStrengthDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.RadioSignalStrengthDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="apStringMacDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.ApStringMacDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.UserDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="mapDataDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.MapDataDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="apiDataDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.ips.dao.ApiDataDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 
 </beans>

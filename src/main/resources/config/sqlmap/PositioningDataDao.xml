@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ips.dao.PositioningDataDao">
+
+    <resultMap id="BaseResultMap" type="com.ips.dto.PositioningData">
+        <result column="Id" property="id" jdbcType="INTEGER" />
+        <result column="Positions" property="position" jdbcType="INTEGER" />
+        <result column="AccelerationX" property="accelerationX" jdbcType="DOUBLE" />
+        <result column="AccelerationY" property="accelerationY" jdbcType="DOUBLE" />
+        <result column="AccelerationZ" property="accelerationZ" jdbcType="DOUBLE" />
+        <result column="GyroscopeX" property="gyroscopeX" jdbcType="DOUBLE" />
+        <result column="GyroscopeY" property="gyroscopeY" jdbcType="DOUBLE" />
+        <result column="GyroscopeZ" property="gyroscopeZ" jdbcType="DOUBLE" />
+        <result column="MagneticX" property="magneticX" jdbcType="DOUBLE" />
+        <result column="MagneticY" property="magneticY" jdbcType="DOUBLE" />
+        <result column="MagneticZ" property="magneticZ" jdbcType="DOUBLE" />
+        <result column="OrientationX" property="orientationX" jdbcType="DOUBLE" />
+        <result column="OrientationY" property="orientationY" jdbcType="DOUBLE" />
+        <result column="OrientationZ" property="orientationZ" jdbcType="DOUBLE" />
+        <result column="CampassX" property="campassX" jdbcType="DOUBLE" />
+        <result column="CampassY" property="campassY" jdbcType="DOUBLE" />
+        <result column="CampassZ" property="campassZ" jdbcType="DOUBLE" />
+        <result column="IndexId" property="indexId" jdbcType="INTEGER" />
+        <result column="Presure" property="presure" jdbcType="DOUBLE" />
+        <result column="DateTime" property="datetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.ips.dto.PositioningData" >
+        insert into PositioningData (
+        Positions,
+        AccelerationX,
+        AccelerationY,
+        AccelerationZ,
+        GyroscopeX,
+        GyroscopeY,
+        GyroscopeZ,
+        MagneticX,
+        MagneticY,
+        MagneticZ,
+        OrientationX,
+        OrientationY,
+        OrientationZ,
+        CampassX,
+        CampassY,
+        CampassZ,
+        IndexId,
+        Presure,
+        DateTime
+        )
+        values (
+        #{position},
+        #{accelerationX},
+        #{accelerationY},
+        #{accelerationZ},
+        #{gyroscopeX},
+        #{gyroscopeY},
+        #{gyroscopeZ},
+        #{magneticX},
+        #{magneticY},
+        #{magneticZ},
+        #{orientationX},
+        #{orientationY},
+        #{orientationZ},
+        #{campassX},
+        #{campassY},
+        #{campassZ},
+        #{indexId},
+        #{presure},CURRENT_TIMESTAMP )
+    </insert>
+
+    <select id="list"  resultMap="BaseResultMap">
+        SELECT * FROM PositioningData
+    </select>
+
+    <select id="list_byPosition" parameterType="int" resultMap="BaseResultMap">
+        SELECT * FROM PositioningData WHERE Positions=#{position}#
+    </select>
+    <select id="quertDistinct" resultMap="BaseResultMap">
+        SELECT DISTINCT Positions FROM PositioningData
+    </select>
+
+
+
+
+</mapper>

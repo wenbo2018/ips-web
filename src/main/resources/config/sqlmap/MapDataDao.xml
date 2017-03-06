@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ips.dao.MapDataDao">
+
+    <resultMap id="BaseResultMap" type="com.ips.dto.MapData">
+        <result column="Id" property="id" jdbcType="INTEGER" />
+        <result column="MapName" property="mapName" jdbcType="VARCHAR" />
+        <result column="MapUrl" property="mapUrl" jdbcType="VARCHAR" />
+        <result column="MapDesc" property="mapDesc" jdbcType="VARCHAR"/>
+        <result column="DateTime" property="datetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <insert id="add" parameterType="com.ips.dto.MapData" >
+        insert into MapData (
+        MapName,
+        MapUrl,
+        MapDesc,
+        DateTime
+        )
+        values (
+        #{mapName},
+        #{mapUrl},
+        #{mapDesc},
+        CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <select id="list"  resultMap="BaseResultMap">
+        SELECT * FROM MapData
+    </select>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM  MapData WHERE Id=#{id}
+    </delete>
+
+</mapper>

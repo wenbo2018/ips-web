@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ips.dao.ApiDataDao">
+
+    <resultMap id="baseResultMasp" type="com.ips.dto.ApiData">
+        <result column="Id" property="id" jdbcType="INTEGER"/>
+        <result column="ApiUrl" property="apiUrl" jdbcType="VARCHAR"/>
+        <result column="ClientIp" property="clientIp" jdbcType="VARCHAR"/>
+        <result column="DateTime" property="requestTime" jdbcType="TIMESTAMP"/>
+        <result column="Status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.ips.dto.ApiData">
+        insert into ApiData (RequestTotalCount,ApiUrl,ClientIp,Status,DateTime)
+        values (#{requestTotalCount},#{apiUrl},#{clientIp},#{status},CURRENT_TIMESTAMP)
+    </insert>
+
+
+    <select id="list" resultMap="baseResultMasp">
+        SELECT * FROM ApiData
+    </select>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM ApiData WHERE Id=#{id}
+    </delete>
+
+
+    <resultMap id="apiDataMasp" type="com.ips.dto.ApiCountData">
+        <result column="Date" property="date" jdbcType="DATE"/>
+        <result column="Count" property="count" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="queryListByFirstDayToNow" resultMap="apiDataMasp">
+        SELECT
+        t2.all_day AS `Date`,
+        IFNULL(SUM(RequestTotalCount), 0) AS `Count`
+        FROM
+        (
+        SELECT
+        @rownum :=@rownum + 1 AS NO,
+        DATE_ADD(
+        #{0},
+        INTERVAL @rownum DAY
+        ) AS all_day
+        FROM
+        (SELECT @rownum := -1) r_init,
+        ApiData
+        ) t2
+        LEFT JOIN ApiData ON (
+        t2.all_day = DATE(ApiData.DateTime)
+        )
+        WHERE t2.all_day &gt;= #{0} AND t2.all_day &lt;= #{1} GROUP BY  t2.all_day;
+    </select>
+
+
+    <resultMap id="topApiMap" type="com.ips.dto.api.TopApi">
+        <result column="ApiCount" property="apiCount" jdbcType="DOUBLE"/>
+        <result column="ApiUrl" property="apiUrl" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="quertTo10API" resultMap="topApiMap">
+        select ApiUrl, count(*)/ (select count(*) from ApiData) as ApiCount
+        from ApiData group by ApiUrl ORDER BY ApiCount DESC LIMIT 0,9;
+    </select>
+</mapper>

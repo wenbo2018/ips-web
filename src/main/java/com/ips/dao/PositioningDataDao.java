@@ -3,6 +3,8 @@ package com.ips.dao;
 import com.ips.dto.PositioningData;
 import com.ips.dto.User;
 
+import java.util.List;
+
 /**
  * Created by shenwenbo on 2016/10/4.
  */
@@ -10,10 +12,9 @@ public interface PositioningDataDao {
 
     public void add(PositioningData psitioningData);
 
-    public User load(int psitioningDataId);
+    public List<PositioningData> list();
 
-    public void delete(int psitioningDataId);
+    public List<PositioningData> list_byPosition(int pos);
 
-    public void update(PositioningData psitioningData);
-
+    List<PositioningData> quertDistinct();
 }

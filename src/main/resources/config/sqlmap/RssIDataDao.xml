@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ips.dao.RssIDataDao">
+
+    <insert id="addRssIData" parameterType="com.ips.dto.RssIData" >
+        insert into RssIData (RssI,Positions,SSID,MacAddress,IndexId,DateTime)
+        values (#{rss}, #{position},#{ssid},#{macAddress},#{indexId},CURRENT_TIMESTAMP)
+    </insert>
+
+</mapper>

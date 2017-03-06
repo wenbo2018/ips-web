@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wed-platform-service:war">
+    <output-path>$PROJECT_DIR$/../wed-platform-parent/wed-platform-service/target</output-path>
+    <root id="archive" name="wed-platform-service-${env}-1.0.0.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="wed-platform-service:war exploded" />
+    </root>
+  </artifact>
+</component>

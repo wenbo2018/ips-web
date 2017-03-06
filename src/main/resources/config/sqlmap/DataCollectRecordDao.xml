@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ips.dao.DataCollectRecordDao">
+
+    <resultMap id="BaseResultMap" type="com.ips.dto.DataCollectRecord">
+        <result column="Positions" property="position" jdbcType="INTEGER" />
+        <result column="MobilePhone" property="mobilePhone" jdbcType="VARCHAR"/>
+        <result column="DataSizes" property="dataSizes" jdbcType="INTEGER"/>
+        <result column="DateTime" property="datetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.ips.dto.DataCollectRecord" >
+        insert into DataCollectRecord (Positions,MobilePhone,DataSizes,DateTime)
+        values (#{position}, #{mobilePhone},#{dataSizes},CURRENT_TIMESTAMP)
+    </insert>
+
+    <select id="load" parameterType="int" resultType="com.ips.dto.DataCollectRecord">
+        SELECT * from DataCollectRecord where Positions=#{position}
+    </select>
+
+    <select id="list"  resultMap="BaseResultMap">
+        SELECT * from DataCollectRecord
+    </select>
+
+    <delete id="delete" parameterType="int">
+        DELETE  FROM  DataCollectRecord WHERE Id=#{id}
+    </delete>
+
+</mapper>

@@ -12,73 +12,54 @@
          http://www.springframework.org/schema/tx 
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<!-- 打开Spring的Annotation支持 -->
-	<context:annotation-config />
-	<!-- 设定Spring 去哪些包中找Annotation -->
-	<context:component-scan base-package="com.ips" />
 	<!-- 导入Src目录下的jdbc.properties文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
-
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-		<!-- 配置连接池的初始值 -->
-		<property name="initialSize" value="1" />
-		<property name="minIdle" value="1" />
-		<property name="maxActive" value="100" />
-		<property name="maxIdle" value="20" />
-		<property name="maxWait" value="1000" />
-		<property name="validationQuery" value="SELECT 1"/>
-        <property name="testOnBorrow" value="true"/>
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:jdbc.properties</value>
+				<value>classpath*:redis.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
 
-	<!--创建Spring的SessionFactory工厂 -->
-	<!-- 如果使用的是Annotation的方式，不能使用LocalSessionFactoryBean,而应该使用 org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		
-		<!-- 注入数据源 -->
-		<property name="dataSource" ref="dataSource" />
-		<!-- 设置Spring取那个包中查找相应的实体类 -->
-		<property name="packagesToScan">
-			<value>rpc.fox</value>
+
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.ips" />
+	<aop:aspectj-autoproxy/>
+
+
+
+
+	<bean id="freemarkerConfig"
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/pages" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>
+				<prop key="default_encoding">UTF-8</prop>
+				<prop key="number_format">0.##########</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="classic_compatible">true</prop>
+				<prop key="template_exception_handler">ignore</prop>
+			</props>
 		</property>
 	</bean>
 
-	<!-- 配置Spring的事务处理
-	创建事务管理器 -->
-	<bean id="txManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	
-<!-- 配置AOP，Spring是通过AOP来进行事务管理的 -->
-	<aop:config>
-	<!-- 设置pointCut表示哪些方法要加入事务处理
-	以下的事务是声明在DAO中，但是通常都会在Service来处理多个业务对象逻辑的关系，注入删除，更新等，此时如果在执行了一个步骤之后抛出异常
-		就会导致数据不完整，所以事务不应该在DAO层处理，而应该在service，这也就是Spring所提供的一个非常方便的工具，声明式事务 -->
-		<aop:pointcut id="allMethods"
-			expression="execution(* rpc.fox.service.*.*(..))" />
-		<!-- 通过advisor来确定具体要加入事务控制的方法 -->
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" />
-	</aop:config>
-	
-<!-- 配置哪些方法要加入事务控制 -->
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-		<!-- 让所有的方法都加入事务管理，为了提高效率，可以把一些查询之类的方法设置为只读的事务 -->
-			<tx:method name="*" propagation="REQUIRED" read-only="false"/>
-			<!-- 以下方法都是可能设计修改的方法，就无法设置为只读 -->
-			<tx:method name="add*" propagation="REQUIRED"/>
-			<tx:method name="del*" propagation="REQUIRED"/>
-			<tx:method name="update*" propagation="REQUIRED"/>
-			<tx:method name="save*" propagation="REQUIRED"/>
-		</tx:attributes>
-	</tx:advice> 
+
+	<!--<bean id="aspetBean" class="com.ips.aop.InterceptorAop"/>-->
+
+	<!--<aop:config>-->
+		<!--<aop:aspect id="aspet" ref="aspetBean">-->
+			<!--<aop:pointcut expression="execution (* com.ips.services.*.*(..))" id="cut"/>-->
+			<!--<aop:before pointcut-ref="cut" method="doBefore"/>-->
+			<!--<aop:after-returning pointcut-ref="cut" method="doAferReturning"/>-->
+			<!--<aop:after pointcut-ref="cut" method="doAfter"/>-->
+			<!--<aop:after-throwing pointcut-ref="cut" method="doAferThrowing"/>-->
+			<!--<aop:around pointcut-ref="cut" method="doAround"/>-->
+		<!--</aop:aspect>-->
+	<!--</aop:config>-->
 
 </beans>
 

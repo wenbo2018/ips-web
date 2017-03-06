@@ -1,0 +1,191 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="wed-platform-service:war exploded">
+    <output-path>$PROJECT_DIR$/../wed-platform-parent/wed-platform-service/target/wed-platform-service-1.0.0.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="wed-platform-service" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="wed-platform-biz-1.0.0.55.jar">
+            <element id="module-output" name="wed-platform-biz" />
+          </element>
+          <element id="library" level="project" name="Maven: com.dianping.cat:cat-core:1.4.4" />
+          <element id="library" level="project" name="Maven: org.unidal.framework:foundation-service:2.4.0" />
+          <element id="library" level="project" name="Maven: org.unidal.framework:web-framework:2.4.0" />
+          <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.1" />
+          <element id="library" level="project" name="Maven: org.xerial.snappy:snappy-java:1.1.2" />
+          <element id="library" level="project" name="Maven: org.unidal.framework:dal-jdbc:2.2.0" />
+          <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.3.1" />
+          <element id="library" level="project" name="Maven: com.dianping.cat:cat-client:1.4.4" />
+          <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.24.Final" />
+          <element id="library" level="project" name="Maven: com.dianping.platform:platform-sdk:1.2.8" />
+          <element id="library" level="project" name="Maven: com.dianping.swallow:swallow-producerclient:0.8.0" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.3" />
+          <element id="library" level="project" name="Maven: com.geekhua:file-queue:0.1.5" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:1.4" />
+          <element id="library" level="project" name="Maven: com.dianping.swallow:swallow-consumerclient:0.8.0" />
+          <element id="library" level="project" name="Maven: com.dianping.swallow:swallow-common:0.8.0" />
+          <element id="library" level="project" name="Maven: com.dianping.swallow:swallow-client:0.5.4" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:2.6.3" />
+          <element id="library" level="project" name="Maven: org.springframework:spring:2.5.6" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:1.8.5" />
+          <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
+          <element id="library" level="project" name="Maven: com.dianping.lion:lion-client:0.5.4" />
+          <element id="library" level="project" name="Maven: org.apache.curator:curator-recipes:2.7.1" />
+          <element id="library" level="project" name="Maven: org.jodd:jodd-bean:3.4.9" />
+          <element id="library" level="project" name="Maven: org.jodd:jodd-core:3.4.9" />
+          <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.7.5" />
+          <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-api:2.7.5" />
+          <element id="library" level="project" name="Maven: org.antlr:antlr:3.3" />
+          <element id="library" level="project" name="Maven: org.antlr:antlr-runtime:3.3" />
+          <element id="library" level="project" name="Maven: org.antlr:stringtemplate:3.2.1" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Maven: com.dianping.hawk:hawk-client:0.7.1" />
+          <element id="library" level="project" name="Maven: com.thoughtworks.xstream:xstream:1.3.1" />
+          <element id="library" level="project" name="Maven: xpp3:xpp3_min:1.1.4c" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.3.0" />
+          <element id="library" level="project" name="Maven: com.dianping:avatar-tracker:2.2.5" />
+          <element id="library" level="project" name="Maven: com.dianping:avatar-dao:2.2.5" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:2.5.6" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:2.5.6" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:2.5.6" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-orm:2.5.6" />
+          <element id="library" level="project" name="Maven: org.apache.ibatis:ibatis-sqlmap:2.3.4.726" />
+          <element id="library" level="project" name="Maven: com.dianping:avatar-core:2.2.5" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:2.5.6" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.5.11" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.0.1" />
+          <element id="library" level="project" name="Maven: com.dianping:avatar-cache:2.8.0" />
+          <element id="library" level="project" name="Maven: com.dianping:cache-builder:2.8.0" />
+          <element id="library" level="project" name="Maven: com.dianping:cache-core:2.8.0" />
+          <element id="library" level="project" name="Maven: com.danga:memcached:2.5.1-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: redis.clients:jedis:2.7.4.DP-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.3" />
+          <element id="library" level="project" name="Maven: com.dianping:avatar-cache-remote:2.8.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:2.5.6" />
+          <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.5.2" />
+          <element id="library" level="project" name="Maven: net.spy:spymemcached:2.11.6" />
+          <element id="library" level="project" name="Maven: org.jboss.netty:netty:3.2.19" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:15.0" />
+          <element id="library" level="project" name="Maven: com.dianping.dpdl:dpdl-simple:0.1.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.5.11" />
+          <element id="library" level="project" name="Maven: com.dianping.dpsf:dpsf-net:2.7.0" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:99.0-does-not-exist" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.4" />
+          <element id="library" level="project" name="Maven: org.mortbay.jetty:jetty:6.1.26" />
+          <element id="library" level="project" name="Maven: org.mortbay.jetty:jetty-util:6.1.26" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging-api:1.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.3" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.3" />
+          <element id="library" level="project" name="Maven: com.caucho:hessian:3.1.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.1.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.1.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.1.4" />
+          <element id="library" level="project" name="Maven: io.protostuff:protostuff-runtime:1.1.0" />
+          <element id="library" level="project" name="Maven: io.protostuff:protostuff-api:1.1.0" />
+          <element id="library" level="project" name="Maven: io.protostuff:protostuff-collectionschema:1.1.0" />
+          <element id="library" level="project" name="Maven: io.protostuff:protostuff-core:1.1.0" />
+          <element id="library" level="project" name="Maven: org.objenesis:objenesis:2.1" />
+          <element id="library" level="project" name="Maven: de.ruedigermoeller:fst:1.63" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.1-GA" />
+          <element id="library" level="project" name="Maven: commons-httpclient:commons-httpclient:3.1" />
+          <element id="library" level="project" name="Maven: org.apache.curator:curator-framework:2.7.1" />
+          <element id="library" level="project" name="Maven: org.apache.curator:curator-client:2.7.1" />
+          <element id="library" level="project" name="Maven: org.apache.zookeeper:zookeeper:3.4.6" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
+          <element id="library" level="project" name="Maven: jline:jline:0.9.94" />
+          <element id="library" level="project" name="Maven: io.netty:netty:3.7.0.Final" />
+          <element id="library" level="project" name="Maven: com.dianping.platform:phoenix-environment:0.4.1" />
+          <element id="library" level="project" name="Maven: com.dianping.platform:phoenix-java-agent:0.2.3" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
+          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-container-default:1.5.5" />
+          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-utils:3.0.8" />
+          <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-classworlds:2.2.2" />
+          <element id="library" level="project" name="Maven: org.apache.xbean:xbean-reflect:3.4" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.8" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.15" />
+          <element id="library" level="project" name="Maven: com.dianping.poi:dp-category-api:1.0.2" />
+          <element id="library" level="project" name="Maven: com.dianping:gis-api:1.0.2" />
+          <element id="library" level="project" name="Maven: com.dianping:dp-common-util:0.1.3" />
+          <element id="library" level="project" name="Maven: commons-digester:commons-digester:2.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:2.5.6" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.5.11" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.7.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.7.1" />
+          <element id="library" level="project" name="Maven: com.dianping:encryption:1.0.1" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2" />
+          <element id="library" level="project" name="Maven: com.dianping:avatar-logger:2.1.2" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.7" />
+          <element id="library" level="project" name="Maven: cglib:cglib:2.2" />
+          <element id="library" level="project" name="Maven: asm:asm:3.1" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+          <element id="archive" name="wed-platform-api-1.0.0.55.jar">
+            <element id="module-output" name="wed-platform-api" />
+          </element>
+          <element id="library" level="project" name="Maven: com.dianping:avatar-interface:1.0.1" />
+          <element id="library" level="project" name="Maven: com.dianping:cms-api:1.0.9" />
+          <element id="library" level="project" name="Maven: com.dianping:merchant-member-api:2.0.4" />
+          <element id="library" level="project" name="Maven: com.dianping:shop-api:0.3.30.9" />
+          <element id="library" level="project" name="Maven: com.dianping:customerinfo-api:1.5.18" />
+          <element id="library" level="project" name="Maven: com.dianping:crm-common:1.0.2" />
+          <element id="library" level="project" name="Maven: com.dianping:crm-utils:0.1.1" />
+          <element id="library" level="project" name="Maven: com.dianping.dp:data-api:0.9.27" />
+          <element id="library" level="project" name="Maven: com.dianping.data.query:engine:0.6.5" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
+          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:1.6.4" />
+          <element id="library" level="project" name="Maven: com.dianping:apollobase-api:1.6.0" />
+          <element id="library" level="project" name="Maven: com.dianping:ba-base-organizationalstructure-api:0.0.22" />
+          <element id="library" level="project" name="Maven: com.dianping:rotate-shop-api:1.1.9-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.dianping:shopbusiness-api:0.0.33.61" />
+          <element id="library" level="project" name="Maven: com.dianping.search:dp-search-interface:1.3.4.1" />
+          <element id="library" level="project" name="Maven: org.apache:libthrift:0.6.0" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:0.11.6" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.39" />
+          <element id="library" level="project" name="Maven: com.dp.arts:arts-client:1.3.5" />
+          <element id="library" level="project" name="Maven: com.dianping:wed-common-platform:0.0.6" />
+          <element id="library" level="project" name="Maven: com.dianping:wedding-common:0.0.22" />
+          <element id="library" level="project" name="Maven: velocity:velocity:1.5" />
+          <element id="library" level="project" name="Maven: ognl:ognl:3.0.5" />
+          <element id="library" level="project" name="Maven: javassist:javassist:3.11.0.GA" />
+          <element id="library" level="project" name="Maven: commons-net:commons-net:3.1" />
+          <element id="library" level="project" name="Maven: com.dianping:ba-base-account-api:0.0.14" />
+          <element id="library" level="project" name="Maven: com.dianping.ba:masterdata-api:0.1.1-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.dianping:mail-api:1.0.0" />
+          <element id="library" level="project" name="Maven: com.dianping:qyweixin-adapter-api:0.0.10" />
+          <element id="library" level="project" name="Maven: com.dianping:qyqq-adapter-api:0.0.2-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.dianping:wedding-wizard-extension:1.0.0.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.dianping:wizard:1.7.0" />
+          <element id="library" level="project" name="Maven: org.jongo:jongo:0.4" />
+          <element id="library" level="project" name="Maven: de.undercouch:bson4jackson:2.1.1" />
+          <element id="library" level="project" name="Maven: org.mongodb:bson:2.8.0" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:fluent-hc:4.3.2" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.12" />
+          <element id="library" level="project" name="Maven: asm:asm-util:3.3.1" />
+          <element id="library" level="project" name="Maven: asm:asm-tree:3.3.1" />
+          <element id="library" level="project" name="Maven: org.apache.struts.xwork:xwork-core:2.3.16.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.1" />
+          <element id="library" level="project" name="Maven: asm:asm-commons:3.3" />
+          <element id="library" level="project" name="Maven: com.dianping:dp-400phone-api:0.0.0.16" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:2.5.6" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:2.5.6" />
+          <element id="library" level="project" name="Maven: org.json:json:20090211" />
+          <element id="library" level="project" name="Maven: com.dianping:wed-customer-api:0.0.0.57" />
+          <element id="library" level="project" name="Maven: com.dianping:wed-redis-api:1.0.0.5" />
+          <element id="library" level="project" name="Maven: com.dianping:glue-core:1.0.1" />
+          <element id="library" level="project" name="Maven: com.dianping:wed-operation-api:0.0.0.43" />
+          <element id="library" level="project" name="Maven: com.dianping.poi:poi-updateflow-api:1.0.5-SNAPSHOT" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../wed-platform-parent/wed-platform-service/target/wed-platform-service-1.0.0.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="wed-platform-service/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ips.dao.RadioSignalStrengthDao">
+
+
+    <resultMap id="BaseResultMap" type="com.ips.dto.RadioSignalStrength">
+        <result column="Id" property="id" jdbcType="INTEGER" />
+        <result column="AP1" property="AP1" jdbcType="INTEGER" />
+        <result column="AP2" property="AP2" jdbcType="INTEGER" />
+        <result column="AP3" property="AP3" jdbcType="INTEGER" />
+        <result column="AP4" property="AP4" jdbcType="INTEGER" />
+        <result column="AP5" property="AP5" jdbcType="INTEGER" />
+        <result column="AP6" property="AP6" jdbcType="INTEGER" />
+        <result column="AP7" property="AP7" jdbcType="INTEGER" />
+        <result column="AP8" property="AP8" jdbcType="INTEGER" />
+        <result column="AP9" property="AP9" jdbcType="INTEGER" />
+        <result column="AP10" property="AP10" jdbcType="INTEGER" />
+        <result column="AP11" property="AP11" jdbcType="INTEGER" />
+        <result column="AP12" property="AP12" jdbcType="INTEGER" />
+        <result column="AP13" property="AP13" jdbcType="INTEGER" />
+        <result column="AP14" property="AP14" jdbcType="INTEGER" />
+        <result column="AP15" property="AP15" jdbcType="INTEGER" />
+        <result column="Cin" property="cin" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.ips.dto.RadioSignalStrength" >
+        insert into RadioSignalStrength (AP1,AP2,AP3,AP4,AP5,AP6,AP7,AP8,AP9,AP10,AP11,AP12,AP13,AP14,AP15,Cin)
+        values (#{AP1},#{AP2},#{AP3},#{AP4},#{AP5},#{AP6},#{AP7},#{AP8},#{AP9},#{AP10},#{AP11},#{AP12},#{AP13},#{AP14},#{AP15},#{cin})
+    </insert>
+
+    <select id="load" parameterType="int" resultMap="BaseResultMap">
+        SELECT * from RadioSignalStrength where Cin=#{cin}
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT * from RadioSignalStrength
+    </select>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM RadioSignalStrength WHERE Id=#{id}
+    </delete>
+
+    <select id="quertDistinct" resultMap="BaseResultMap">
+        SELECT DISTINCT Cin FROM RadioSignalStrength
+    </select>
+
+</mapper>
