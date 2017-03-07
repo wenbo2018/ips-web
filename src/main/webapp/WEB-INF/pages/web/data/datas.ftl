@@ -30,6 +30,9 @@
         apPage();
     });
 
+
+
+
 </script>
 <script type="text/javascript">
     $(function () {
@@ -68,6 +71,8 @@
     });
 </script>
 
+
+
 <#include "web/menu.ftl"/>
 
 <div class="content">
@@ -75,19 +80,7 @@
     <div class="main-content">
 
 
-        <div class="row" >
-            <select style="width: 200px;height: 34px;margin-left: 13px;" class="selectpicker">
-                <option value="-12.0">(GMT -12:00) </option>
-                <option value="-11.0">(GMT -11:00) </option>
-                <option value="-10.0">(GMT -10:00) Hawaii</option>
-                <option value="-9.0">(GMT -9:00) Alaska</option>
-                <option selected="selected" value="-8.0">(GMT -8:00) Pac</option>
-            </select>
-            <div class="btn-group">
-            <button class="btn btn-primary"><i class="fa fa-plus"></i>导出Excel数据</button>&nbsp;
-            </div>
-        </div>
-        <br>
+
 
         <ul class="nav nav-tabs">
             <li class="active"><a href="#home" data-toggle="tab">IMU数据</a></li>
@@ -177,6 +170,7 @@
                                         <th class="center">Position</th>
                                         <th class="center">手机型号</th>
                                         <th class="center">数据量</th>
+                                        <th class="center">类型</th>
                                         <th class="center">采集时间</th>
                                         <th class="center">操作</th>
                                     </tr>

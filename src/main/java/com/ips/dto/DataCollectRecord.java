@@ -18,6 +18,11 @@ public class DataCollectRecord implements Serializable{
 
     private Date datetime;
 
+    /****
+     * 1代表WiFi数据，2代表IMU,3代表WIFI+imu
+     */
+    private int dataType;
+
 
     public int getPosition() {
         return position;
@@ -57,5 +62,13 @@ public class DataCollectRecord implements Serializable{
 
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
+    }
+
+    public int getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(int dataType) {
+        this.dataType = dataType;
     }
 }

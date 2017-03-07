@@ -21,4 +21,8 @@ public interface RadioSignalStrengthDao {
     List<RadioSignalStrength> quertDistinct();
 
 
+
+
+
+
 }

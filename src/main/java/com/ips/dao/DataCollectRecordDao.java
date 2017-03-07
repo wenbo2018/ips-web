@@ -18,4 +18,6 @@ public interface DataCollectRecordDao {
 
 
     public  void delete(int recoderId);
+
+    void update(DataCollectRecord dataCollectRecord);
 }

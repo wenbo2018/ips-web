@@ -257,8 +257,14 @@
                         c+="<td>"+data.list[i].position+"</td>";
                         c+="<td>"+data.list[i].mobilePhone+"</td>";
                         c+="<td>"+data.list[i].dataSizes+"</td>";
+                        switch (data.list[i].dataType) {
+                            case 1:c+="<td>IMU</td>"; break;
+                            case 2:c+="<td>WIFI</td>"; break;
+                            case 3:c+="<td>WIFI+IMU</td>"; break;
+                            default:c+="<td>*</td>";
+                        }
                         c+="<td>"+data.list[i].datetime+"</td>";
-                        c+="<td ><a id='datas-delete-recoder'  name='"+data.list[i].id+"'   data-toggle='modal' class='btn btn-danger'>删除</a></td></tr>";
+                        c+="<td ><a id='datas-delete-recoder'  name='"+data.list[i].id+"'   data-toggle='modal' class='btn btn-danger'>删除</a>&nbsp;<a   href='/admins/datas/downEcxel?position="+data.list[i].position+"&type="+data.list[i].dataType+"'  data-toggle='modal' class='btn btn-danger'  style='background: green';>导出Excel数据</a></td></tr>";
                     }
                     $("#contentr").html(c);
                 },

@@ -33,5 +33,7 @@ public interface DataCollectRecordService {
 
     public void delete(int reocderId);
 
+    void update(DataCollectRecord dataCollectRecord);
+
 
 }

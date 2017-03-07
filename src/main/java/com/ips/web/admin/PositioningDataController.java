@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -213,7 +214,7 @@ public class PositioningDataController {
      */
     @RequestMapping(value = "/downEcxel", method = RequestMethod.GET)
     public void download(HttpServletRequest request, int position, int type, HttpServletResponse response) throws IOException {
-        String fileName=null;
+        String fileName = null;
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         if (type == 1) {
             fileName = "IMU_Excel数据" + System.currentTimeMillis();
@@ -233,11 +234,11 @@ public class PositioningDataController {
             }
         } else if (type == 2) {
             fileName = "WIFI_Excel数据" + System.currentTimeMillis();
-            List<RadioSignalStrength> projects=radioSignalStrengthService.queryByPosition(position);
+            List<RadioSignalStrength> projects = radioSignalStrengthService.queryByPosition(position);
             List<Map<String, Object>> listWIFI = createExcelRecordwifi(projects);
-            String columnNamesWIFI[] ={"ID","AP1","AP2","AP3","AP4","AP5","AP6","AP7","AP8","AP9","AP10","CIN"};
-            String keysWIFI[]={"ID","AP1","AP2","AP3","AP4","AP5","AP6","AP7","AP8","AP9","10","CIN"};
-            ExcelUtil.createWorkBook(listWIFI,keysWIFI,columnNamesWIFI).write(os);
+            String columnNamesWIFI[] = {"ID", "AP1", "AP2", "AP3", "AP4", "AP5", "AP6", "AP7", "AP8", "AP9", "AP10", "CIN"};
+            String keysWIFI[] = {"Id", "AP1", "AP2", "AP3", "AP4", "AP5", "AP6", "AP7", "AP8", "AP9", "AP10", "CIN"};
+            ExcelUtil.createWorkBook(listWIFI, keysWIFI, columnNamesWIFI).write(os);
         }
         byte[] content = os.toByteArray();
         InputStream is = new ByteArrayInputStream(content);
@@ -272,7 +273,7 @@ public class PositioningDataController {
      * @param projects
      * @return
      */
-    private List<Map<String,Object>> createExcelRecordwifi(List<RadioSignalStrength> projects) {
+    private List<Map<String, Object>> createExcelRecordwifi(List<RadioSignalStrength> projects) {
         List<Map<String, Object>> listmap = new ArrayList<Map<String, Object>>();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("sheetName", "sheet1");
@@ -292,7 +293,7 @@ public class PositioningDataController {
             mapValue.put("AP8", project.getAP8());
             mapValue.put("AP9", project.getAP9());
             mapValue.put("AP10", project.getAP10());
-            mapValue.put("CIN",project.getCin());
+            mapValue.put("CIN", project.getCin());
             listmap.add(mapValue);
         }
         return listmap;

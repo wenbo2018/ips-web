@@ -111,6 +111,16 @@ $(document).ready(function () {
         });
     });
 
+
+    //数据下载Ajax
+    $("#contentr").on("click","#datas-download",function(){
+        $.ajax({
+            url: "/admins/datas/downEcxel",
+            type: "GET",
+            data: {"position": $("#datas-download").attr("name"),"type":$("#datas-download").attr("type")},
+        });
+    });
+
     //AP删除Ajax
     $("#contentmap").on("click","#maps-delete-map",function(){
         $.ajax({
@@ -208,8 +218,4 @@ $(document).ready(function () {
             }
         });
     });
-
-
-
-
 });

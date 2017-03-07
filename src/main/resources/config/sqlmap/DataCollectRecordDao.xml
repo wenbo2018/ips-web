@@ -8,12 +8,13 @@
         <result column="MobilePhone" property="mobilePhone" jdbcType="VARCHAR"/>
         <result column="DataSizes" property="dataSizes" jdbcType="INTEGER"/>
         <result column="DateTime" property="datetime" jdbcType="TIMESTAMP" />
+        <result column="DataType" property="dataType" jdbcType="TIMESTAMP" />
     </resultMap>
 
 
     <insert id="add" parameterType="com.ips.dto.DataCollectRecord" >
-        insert into DataCollectRecord (Positions,MobilePhone,DataSizes,DateTime)
-        values (#{position}, #{mobilePhone},#{dataSizes},CURRENT_TIMESTAMP)
+        insert into DataCollectRecord (Positions,MobilePhone,DataSizes,DataType,DateTime)
+        values (#{position}, #{mobilePhone},#{dataSizes},#{dataType},CURRENT_TIMESTAMP)
     </insert>
 
     <select id="load" parameterType="int" resultType="com.ips.dto.DataCollectRecord">
@@ -25,7 +26,12 @@
     </select>
 
     <delete id="delete" parameterType="int">
-        DELETE  FROM  DataCollectRecord WHERE Id=#{id}
+        DELETE  FROM  DataCollectRecord WHERE Positions=#{position}
     </delete>
+
+
+    <update id="update" parameterType="com.ips.dto.DataCollectRecord" >
+        update DataCollectRecord set DataSizes=#{dataSizes} where id=#{id}
+    </update>
 
 </mapper>

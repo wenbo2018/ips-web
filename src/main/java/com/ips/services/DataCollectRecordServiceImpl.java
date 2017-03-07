@@ -87,4 +87,9 @@ public class DataCollectRecordServiceImpl implements DataCollectRecordService {
     public void delete(int reocderId) {
         dataCollectRecordDao.delete(reocderId);
     }
+
+    @Override
+    public void update(DataCollectRecord dataCollectRecord) {
+        dataCollectRecordDao.update(dataCollectRecord);
+    }
 }
