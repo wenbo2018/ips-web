@@ -90,12 +90,8 @@ public class PositioningDataWeb {
     @RequestMapping(value = "/PositioningService/DataCollectRecordAdd", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> dataCollectRecordAdd(@RequestBody Map<String, String> parm) {
-        DataCollectRecord dataCollectRecord = new DataCollectRecord();
-        dataCollectRecord.setDataSizes(NumberUtils.toInt(parm.get("dataSize")));
-        dataCollectRecord.setDataType(NumberUtils.toInt(parm.get("dataType")));
-        dataCollectRecord.setMobilePhone(parm.get("mobilePhone"));
-        dataCollectRecord.setPosition(NumberUtils.toInt(parm.get("position")));
-        dataCollectRecordService.update(dataCollectRecord);
+        DataCollectRecord dataCollectRecord = new Gson().fromJson(parm.get("json"),DataCollectRecord.class);
+        dataCollectRecordService.add(dataCollectRecord);
         Map<String, String> re = new HashMap<String, String>();
         re.put("code", "200");
         return re;
