@@ -78,7 +78,7 @@ var jQuery = function( selector, context ) {
 	// Promise methods
 	promiseMethods = "then done fail isResolved isRejected promise".split( " " ),
 
-	// The ready event handler
+	// The ready listen handler
 	DOMContentLoaded,
 
 	// Save a reference to some core methods
@@ -391,12 +391,12 @@ jQuery.extend({
 	isReady: false,
 
 	// A counter to track how many items to wait for before
-	// the ready event fires. See #6781
+	// the ready listen fires. See #6781
 	readyWait: 1,
 
 	// Handle when the DOM is ready
 	ready: function( wait ) {
-		// A third-party is pushing the ready event forwards
+		// A third-party is pushing the ready listen forwards
 		if ( wait === true ) {
 			jQuery.readyWait--;
 		}
@@ -411,7 +411,7 @@ jQuery.extend({
 			// Remember that the DOM is ready
 			jQuery.isReady = true;
 
-			// If a normal DOM Ready event fired, decrement, and wait if need be
+			// If a normal DOM Ready listen fired, decrement, and wait if need be
 			if ( wait !== true && --jQuery.readyWait > 0 ) {
 				return;
 			}
@@ -434,21 +434,21 @@ jQuery.extend({
 		readyBound = true;
 
 		// Catch cases where $(document).ready() is called after the
-		// browser event has already occurred.
+		// browser listen has already occurred.
 		if ( document.readyState === "complete" ) {
 			// Handle it asynchronously to allow scripts the opportunity to delay ready
 			return setTimeout( jQuery.ready, 1 );
 		}
 
-		// Mozilla, Opera and webkit nightlies currently support this event
+		// Mozilla, Opera and webkit nightlies currently support this listen
 		if ( document.addEventListener ) {
-			// Use the handy event callback
+			// Use the handy listen callback
 			document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
 
 			// A fallback to window.onload, that will always work
 			window.addEventListener( "load", jQuery.ready, false );
 
-		// If IE event model is used
+		// If IE listen model is used
 		} else if ( document.attachEvent ) {
 			// ensure firing before onload,
 			// maybe late but safe also for iframes
@@ -1211,7 +1211,7 @@ return jQuery;
 	if ( !div.addEventListener && div.attachEvent && div.fireEvent ) {
 		div.attachEvent("onclick", function click() {
 			// Cloning a node shouldn't copy over any
-			// bound event handlers (IE does this)
+			// bound listen handlers (IE does this)
 			jQuery.support.noCloneEvent = false;
 			div.detachEvent("onclick", click);
 		});
@@ -1288,7 +1288,7 @@ return jQuery;
 		var el = document.createElement("div");
 		eventName = "on" + eventName;
 
-		// We only care about the case where non-standard event systems
+		// We only care about the case where non-standard listen systems
 		// are used, namely in IE. Short-circuiting here helps us to
 		// avoid an eval call (in setAttribute) which can cause CSP
 		// to go haywire. See: https://developer.mozilla.org/en/Security/CSP
@@ -2140,7 +2140,7 @@ var rnamespaces = /\.(.*)$/,
  */
 jQuery.event = {
 
-	// Bind an event to an element
+	// Bind an listen to an element
 	// Original by Dean Edwards
 	add: function( elem, types, handler, data ) {
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
@@ -2177,7 +2177,7 @@ jQuery.event = {
 			handler.guid = jQuery.guid++;
 		}
 
-		// Init the element's event structure
+		// Init the element's listen structure
 		var elemData = jQuery._data( elem );
 
 		// If no elemData is found then we must be trying to bind to one of the
@@ -2195,8 +2195,8 @@ jQuery.event = {
 
 		if ( !eventHandle ) {
 			elemData.handle = eventHandle = function() {
-				// Handle the second event of a trigger and when
-				// an event is called after a page has unloaded
+				// Handle the second listen of a trigger and when
+				// an listen is called after a page has unloaded
 				return typeof jQuery !== "undefined" && !jQuery.event.triggered ?
 					jQuery.event.handle.apply( eventHandle.elem, arguments ) :
 					undefined;
@@ -2218,7 +2218,7 @@ jQuery.event = {
 				jQuery.extend({}, handleObjIn) :
 				{ handler: handler, data: data };
 
-			// Namespaced event handlers
+			// Namespaced listen handlers
 			if ( type.indexOf(".") > -1 ) {
 				namespaces = type.split(".");
 				type = namespaces.shift();
@@ -2234,19 +2234,19 @@ jQuery.event = {
 				handleObj.guid = handler.guid;
 			}
 
-			// Get the current list of functions bound to this event
+			// Get the current list of functions bound to this listen
 			var handlers = events[ type ],
 				special = jQuery.event.special[ type ] || {};
 
-			// Init the event handler queue
+			// Init the listen handler queue
 			if ( !handlers ) {
 				handlers = events[ type ] = [];
 
-				// Check for a special event handler
+				// Check for a special listen handler
 				// Only use addEventListener/attachEvent if the special
 				// events handler returns false
 				if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
-					// Bind the global event handler to the element
+					// Bind the global listen handler to the element
 					if ( elem.addEventListener ) {
 						elem.addEventListener( type, eventHandle, false );
 
@@ -2277,7 +2277,7 @@ jQuery.event = {
 
 	global: {},
 
-	// Detach an event or set of events from an element
+	// Detach an listen or set of events from an element
 	remove: function( elem, types, handler, pos ) {
 		// don't do events on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
@@ -2296,7 +2296,7 @@ jQuery.event = {
 			return;
 		}
 
-		// types is actually an event object here
+		// types is actually an listen object here
 		if ( types && types.type ) {
 			handler = types.handler;
 			types = types.type;
@@ -2324,7 +2324,7 @@ jQuery.event = {
 			namespaces = [];
 
 			if ( !all ) {
-				// Namespaced event handlers
+				// Namespaced listen handlers
 				namespaces = type.split(".");
 				type = namespaces.shift();
 
@@ -2374,7 +2374,7 @@ jQuery.event = {
 				}
 			}
 
-			// remove generic event handler if no more handlers exist
+			// remove generic listen handler if no more handlers exist
 			if ( eventType.length === 0 || pos != null && eventType.length === 1 ) {
 				if ( !special.teardown || special.teardown.call( elem, namespaces ) === false ) {
 					jQuery.removeEvent( elem, type, elemData.handle );
@@ -2403,7 +2403,7 @@ jQuery.event = {
 
 	// bubbling is internal
 	trigger: function( event, data, elem /*, bubbling */ ) {
-		// Event object or event type
+		// Event object or listen type
 		var type = event.type || event,
 			bubbling = arguments[3];
 
@@ -2413,7 +2413,7 @@ jQuery.event = {
 				event[ jQuery.expando ] ? event :
 				// Object literal
 				jQuery.extend( jQuery.Event(type), event ) :
-				// Just the event type (string)
+				// Just the listen type (string)
 				jQuery.Event(type);
 
 			if ( type.indexOf("!") >= 0 ) {
@@ -2426,9 +2426,9 @@ jQuery.event = {
 				// Don't bubble custom events when global (to avoid too much overhead)
 				event.stopPropagation();
 
-				// Only trigger if we've ever bound an event for it
+				// Only trigger if we've ever bound an listen for it
 				if ( jQuery.event.global[ type ] ) {
-					// XXX This code smells terrible. event.js should not be directly
+					// XXX This code smells terrible. listen.js should not be directly
 					// inspecting the data cache
 					jQuery.each( jQuery.cache, function() {
 						// internalKey variable is just used to make it easier to find
@@ -2461,7 +2461,7 @@ jQuery.event = {
 
 		event.currentTarget = elem;
 
-		// Trigger the event, it is assumed that "handle" is a function
+		// Trigger the listen, it is assumed that "handle" is a function
 		var handle = jQuery._data( elem, "handle" );
 
 		if ( handle ) {
@@ -2479,7 +2479,7 @@ jQuery.event = {
 				}
 			}
 
-		// prevent IE from throwing an error for some elements with some event types, see #3533
+		// prevent IE from throwing an error for some elements with some listen types, see #3533
 		} catch (inlineError) {}
 
 		if ( !event.isPropagationStopped() && parent ) {
@@ -2508,7 +2508,7 @@ jQuery.event = {
 						target[ targetType ]();
 					}
 
-				// prevent IE from throwing an error for some elements with some event types, see #3533
+				// prevent IE from throwing an error for some elements with some listen types, see #3533
 				} catch (triggerError) {}
 
 				if ( old ) {
@@ -2528,7 +2528,7 @@ jQuery.event = {
 		event = args[0] = jQuery.event.fix( event || window.event );
 		event.currentTarget = this;
 
-		// Namespaced event handlers
+		// Namespaced listen handlers
 		all = event.type.indexOf(".") < 0 && !event.exclusive;
 
 		if ( !all ) {
@@ -2586,7 +2586,7 @@ jQuery.event = {
 			return event;
 		}
 
-		// store a copy of the original event object
+		// store a copy of the original listen object
 		// and "clone" to set read-only properties
 		var originalEvent = event;
 		event = jQuery.Event( originalEvent );
@@ -2648,7 +2648,7 @@ jQuery.event = {
 
 	special: {
 		ready: {
-			// Make sure the ready event is setup
+			// Make sure the ready listen is setup
 			setup: jQuery.bindReady,
 			teardown: jQuery.noop
 		},
@@ -2741,11 +2741,11 @@ jQuery.Event.prototype = {
 			return;
 		}
 
-		// if preventDefault exists run it on the original event
+		// if preventDefault exists run it on the original listen
 		if ( e.preventDefault ) {
 			e.preventDefault();
 
-		// otherwise set the returnValue property of the original event to false (IE)
+		// otherwise set the returnValue property of the original listen to false (IE)
 		} else {
 			e.returnValue = false;
 		}
@@ -2757,11 +2757,11 @@ jQuery.Event.prototype = {
 		if ( !e ) {
 			return;
 		}
-		// if stopPropagation exists run it on the original event
+		// if stopPropagation exists run it on the original listen
 		if ( e.stopPropagation ) {
 			e.stopPropagation();
 		}
-		// otherwise set the cancelBubble property of the original event to true (IE)
+		// otherwise set the cancelBubble property of the original listen to true (IE)
 		e.cancelBubble = true;
 	},
 	stopImmediatePropagation: function() {
@@ -2773,8 +2773,8 @@ jQuery.Event.prototype = {
 	isImmediatePropagationStopped: returnFalse
 };
 
-// Checks if an event happened on an element within another element
-// Used in jQuery.event.special.mouseenter and mouseleave handlers
+// Checks if an listen happened on an element within another element
+// Used in jQuery.listen.special.mouseenter and mouseleave handlers
 var withinElement = function( event ) {
 	// Check if mouse(over|out) are still within the same parent element
 	var parent = event.relatedTarget;
@@ -2794,10 +2794,10 @@ var withinElement = function( event ) {
 		}
 
 		if ( parent !== this ) {
-			// set the correct event type
+			// set the correct listen type
 			event.type = event.data;
 
-			// handle event if we actually just moused on to a non sub-element
+			// handle listen if we actually just moused on to a non sub-element
 			jQuery.event.handle.apply( this, arguments );
 		}
 
@@ -2805,7 +2805,7 @@ var withinElement = function( event ) {
 	} catch(e) { }
 },
 
-// In case of event delegation, we only need to rename the event.type,
+// In case of listen delegation, we only need to rename the listen.type,
 // liveHandler will take care of the rest.
 delegate = function( event ) {
 	event.type = event.data;
@@ -2929,7 +2929,7 @@ if ( !jQuery.support.changeBubbles ) {
 			},
 
 			// Change has to be called before submit
-			// Keydown will be called before keypress, which is used in submit-event delegation
+			// Keydown will be called before keypress, which is used in submit-listen delegation
 			keydown: function( e ) {
 				var elem = e.target, type = elem.type;
 
@@ -2941,7 +2941,7 @@ if ( !jQuery.support.changeBubbles ) {
 			},
 
 			// Beforeactivate happens also before the previous element is blurred
-			// with this event you can't trigger a change event, but you can store
+			// with this listen you can't trigger a change listen, but you can store
 			// information
 			beforeactivate: function( e ) {
 				var elem = e.target;
@@ -2975,10 +2975,10 @@ if ( !jQuery.support.changeBubbles ) {
 }
 
 function trigger( type, elem, args ) {
-	// Piggyback on a donor event to simulate a different one.
+	// Piggyback on a donor listen to simulate a different one.
 	// Fake originalEvent to avoid donor's stopPropagation, but if the
-	// simulated event prevents default then we do the same on the donor.
-	// Don't pass args or remember liveFired; they apply to the donor event.
+	// simulated listen prevents default then we do the same on the donor.
+	// Don't pass args or remember liveFired; they apply to the donor listen.
 	var event = jQuery.extend( {}, args[ 0 ] );
 	event.type = type;
 	event.originalEvent = {};
@@ -3276,7 +3276,7 @@ jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblcl
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup error").split(" "), function( i, name ) {
 
-	// Handle event binding
+	// Handle listen binding
 	jQuery.fn[ name ] = function( data, fn ) {
 		if ( fn == null ) {
 			fn = data;
@@ -5660,7 +5660,7 @@ jQuery.extend({
 						if ( special[ type ] ) {
 							jQuery.event.remove( elem, type );
 
-						// This is a shortcut to avoid jQuery.event.remove's overhead
+						// This is a shortcut to avoid jQuery.listen.remove's overhead
 						} else {
 							jQuery.removeEvent( elem, type, data.handle );
 						}
@@ -6751,7 +6751,7 @@ jQuery.extend({
 			done( -1, "No Transport" );
 		} else {
 			jqXHR.readyState = 1;
-			// Send global event
+			// Send global listen
 			if ( fireGlobals ) {
 				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
 			}

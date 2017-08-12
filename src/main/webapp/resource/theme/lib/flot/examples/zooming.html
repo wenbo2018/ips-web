@@ -85,7 +85,7 @@ $(function () {
                           yaxis: { min: ranges.yaxis.from, max: ranges.yaxis.to }
                       }));
         
-        // don't fire event on the overview to prevent eternal loop
+        // don't fire listen on the overview to prevent eternal loop
         overview.setSelection(ranges, true);
     });
     $("#overview").bind("plotselected", function (event, ranges) {

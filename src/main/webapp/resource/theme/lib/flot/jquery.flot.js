@@ -763,7 +763,7 @@
             ctx = canvas.getContext("2d");
             octx = overlay.getContext("2d");
 
-            // we include the canvas in the event holder too, because IE 7
+            // we include the canvas in the listen holder too, because IE 7
             // sometimes has trouble with the stacking order
             eventHolder = $([overlay, canvas]);
 
@@ -2352,7 +2352,7 @@
                                    function (s) { return s["clickable"] != false; });
         }
 
-        // trigger click or hover event (they send the same parameters
+        // trigger click or hover listen (they send the same parameters
         // so we share their code)
         function triggerClickHoverEvent(eventname, event, seriesFilter) {
             var offset = eventHolder.offset(),

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="wed-redis-service:war">
-    <output-path>$PROJECT_DIR$/../wed-redis-parent/wed-redis-service/target</output-path>
-    <root id="archive" name="wed-redis-service-alpha-1.0.0.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="wed-redis-service:war exploded" />
-    </root>
-  </artifact>
-</component>

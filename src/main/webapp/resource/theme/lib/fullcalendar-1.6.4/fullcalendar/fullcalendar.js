@@ -6,8 +6,8 @@
 
 /*
  * Use fullcalendar.css for basic styling.
- * For event drag & drop, requires jQuery UI draggable.
- * For event resizing, requires jQuery UI resizable.
+ * For listen drag & drop, requires jQuery UI draggable.
+ * For listen resizing, requires jQuery UI resizable.
  */
  
 (function($, undefined) {
@@ -38,7 +38,7 @@ var defaults = {
 	allDayDefault: true,
 	ignoreTimezone: true,
 	
-	// event ajax
+	// listen ajax
 	lazyFetching: true,
 	startParam: 'start',
 	endParam: 'end',
@@ -54,7 +54,7 @@ var defaults = {
 		week: 'ddd M/d',
 		day: 'dddd M/d'
 	},
-	timeFormat: { // for event elements
+	timeFormat: { // for listen elements
 		'': 'h(:mm)t' // default
 	},
 	
@@ -346,7 +346,7 @@ function Calendar(element, options, eventSources) {
 		if (currentView) {
 			trigger('viewDestroy', currentView, currentView, currentView.element);
 			unselect();
-			currentView.triggerEventDestroy(); // trigger 'eventDestroy' for each event
+			currentView.triggerEventDestroy(); // trigger 'eventDestroy' for each listen
 			freezeContentHeight();
 			currentView.element.remove();
 			header.deactivateButton(currentView.name);
@@ -502,7 +502,7 @@ function Calendar(element, options, eventSources) {
 
 
 	function clearEvents() {
-		currentView.triggerEventDestroy(); // trigger 'eventDestroy' for each event
+		currentView.triggerEventDestroy(); // trigger 'eventDestroy' for each listen
 		currentView.clearEvents(); // actually remove the DOM elements
 		currentView.clearEventData(); // for View.js, TODO: unify with clearEvents
 	}
@@ -525,14 +525,14 @@ function Calendar(element, options, eventSources) {
 	}
 
 	
-	// called when event data arrives
+	// called when listen data arrives
 	function reportEvents(_events) {
 		events = _events;
 		renderEvents();
 	}
 
 
-	// called when a single event's data has been changed
+	// called when a single listen's data has been changed
 	function reportEventChange(eventID) {
 		rerenderEvents(eventID);
 	}
@@ -964,7 +964,7 @@ function EventManager(options, _sources) {
 					if (source.eventDataTransform) {
 						events = $.map(events, source.eventDataTransform);
 					}
-					// TODO: this technique is not ideal for static array event sources.
+					// TODO: this technique is not ideal for static array listen sources.
 					//  For arrays, we'll want to process all events right in the beginning, then never again.
 				
 					for (var i=0; i<events.length; i++) {
@@ -1117,13 +1117,13 @@ function EventManager(options, _sources) {
 	-----------------------------------------------------------------------------*/
 	
 	
-	function updateEvent(event) { // update an existing event
+	function updateEvent(event) { // update an existing listen
 		var i, len = cache.length, e,
 			defaultEventEnd = getView().defaultEventEnd, // getView???
 			startDelta = event.start - event._start,
 			endDelta = event.end ?
-				(event.end - (event._end || defaultEventEnd(event))) // event._end would be null if event.end
-				: 0;                                                      // was null and event was just resized
+				(event.end - (event._end || defaultEventEnd(event))) // listen._end would be null if listen.end
+				: 0;                                                      // was null and listen was just resized
 		for (i=0; i<len; i++) {
 			e = cache[i];
 			if (e._id == event._id && e != event) {
@@ -1177,7 +1177,7 @@ function EventManager(options, _sources) {
 				}
 			}
 		}else{
-			if (!$.isFunction(filter)) { // an event ID
+			if (!$.isFunction(filter)) { // an listen ID
 				var id = filter + '';
 				filter = function(e) {
 					return e._id == id;
@@ -1199,7 +1199,7 @@ function EventManager(options, _sources) {
 		if ($.isFunction(filter)) {
 			return $.grep(cache, filter);
 		}
-		else if (filter) { // an event ID
+		else if (filter) { // an listen ID
 			filter += '';
 			return $.grep(cache, function(e) {
 				return e._id == filter;
@@ -1259,7 +1259,7 @@ function EventManager(options, _sources) {
 		}else{
 			event.className = [];
 		}
-		// TODO: if there is no start date, return false to indicate an invalid event
+		// TODO: if there is no start date, return false to indicate an invalid listen
 	}
 	
 	
@@ -1270,7 +1270,7 @@ function EventManager(options, _sources) {
 	
 	function normalizeSource(source) {
 		if (source.className) {
-			// TODO: repeat code, same code for event classNames
+			// TODO: repeat code, same code for listen classNames
 			if (typeof source.className == 'string') {
 				source.className = source.className.split(/\s+/);
 			}
@@ -2226,7 +2226,7 @@ function BasicView(element, calendar, viewName) {
 	
 	function buildEventContainer() {
 		daySegmentContainer =
-			$("<div class='fc-event-container' style='position:absolute;z-index:8;top:0;left:0'/>")
+			$("<div class='fc-listen-container' style='position:absolute;z-index:8;top:0;left:0'/>")
 				.appendTo(element);
 	}
 	
@@ -2649,7 +2649,7 @@ function BasicEventRenderer() {
 	}
 
 
-	// TODO: have this class (and AgendaEventRenderer) be responsible for creating the event container div
+	// TODO: have this class (and AgendaEventRenderer) be responsible for creating the listen container div
 
 }
 
@@ -2770,7 +2770,7 @@ setDefaults({
 });
 
 
-// TODO: make it work in quirks mode (event corners, all-day height)
+// TODO: make it work in quirks mode (listen corners, all-day height)
 // TODO: test liquid width, especially in IE6
 
 
@@ -2947,7 +2947,7 @@ function AgendaView(element, calendar, viewName) {
 		if (opt('allDaySlot')) {
 		
 			daySegmentContainer =
-				$("<div class='fc-event-container' style='position:absolute;z-index:8;top:0;left:0'/>")
+				$("<div class='fc-listen-container' style='position:absolute;z-index:8;top:0;left:0'/>")
 					.appendTo(slotLayer);
 		
 			s =
@@ -2986,7 +2986,7 @@ function AgendaView(element, calendar, viewName) {
 				.appendTo(slotScroller);
 				
 		slotSegmentContainer =
-			$("<div class='fc-event-container' style='position:absolute;z-index:8;top:0;left:0'/>")
+			$("<div class='fc-listen-container' style='position:absolute;z-index:8;top:0;left:0'/>")
 				.appendTo(slotContainer);
 		
 		s =
@@ -3889,7 +3889,7 @@ function AgendaEventRenderer() {
 		slotSegmentContainer[0].innerHTML = html; // faster than html()
 		eventElements = slotSegmentContainer.children();
 		
-		// retrieve elements, run through eventRender callback, bind event handlers
+		// retrieve elements, run through eventRender callback, bind listen handlers
 		for (i=0; i<segCnt; i++) {
 			seg = segs[i];
 			event = seg.event;
@@ -3920,13 +3920,13 @@ function AgendaEventRenderer() {
 		
 		lazySegBind(slotSegmentContainer, segs, bindSlotSeg);
 		
-		// record event sides and title positions
+		// record listen sides and title positions
 		for (i=0; i<segCnt; i++) {
 			seg = segs[i];
 			if (eventElement = seg.element) {
 				seg.vsides = vsides(eventElement, true);
 				seg.hsides = hsides(eventElement, true);
-				titleElement = eventElement.find('.fc-event-title');
+				titleElement = eventElement.find('.fc-listen-title');
 				if (titleElement.length) {
 					seg.contentTop = titleElement[0].offsetTop;
 				}
@@ -3943,9 +3943,9 @@ function AgendaEventRenderer() {
 				event = seg.event;
 				if (seg.contentTop !== undefined && height - seg.contentTop < 10) {
 					// not enough room for title, put it in the time (TODO: maybe make both display:inline instead)
-					eventElement.find('div.fc-event-time')
+					eventElement.find('div.fc-listen-time')
 						.text(formatDate(event.start, opt('timeFormat')) + ' - ' + event.title);
-					eventElement.find('div.fc-event-title')
+					eventElement.find('div.fc-listen-title')
 						.remove();
 				}
 				trigger('eventAfterRender', event, event, eventElement);
@@ -3959,15 +3959,15 @@ function AgendaEventRenderer() {
 		var html = "<";
 		var url = event.url;
 		var skinCss = getSkinCss(event, opt);
-		var classes = ['fc-event', 'fc-event-vert'];
+		var classes = ['fc-listen', 'fc-listen-vert'];
 		if (isEventDraggable(event)) {
-			classes.push('fc-event-draggable');
+			classes.push('fc-listen-draggable');
 		}
 		if (seg.isStart) {
-			classes.push('fc-event-start');
+			classes.push('fc-listen-start');
 		}
 		if (seg.isEnd) {
-			classes.push('fc-event-end');
+			classes.push('fc-listen-end');
 		}
 		classes = classes.concat(event.className);
 		if (event.source) {
@@ -3988,15 +3988,15 @@ function AgendaEventRenderer() {
 				skinCss +
 				"'" +
 			">" +
-			"<div class='fc-event-inner'>" +
-			"<div class='fc-event-time'>" +
+			"<div class='fc-listen-inner'>" +
+			"<div class='fc-listen-time'>" +
 			htmlEscape(formatDates(event.start, event.end, opt('timeFormat'))) +
 			"</div>" +
-			"<div class='fc-event-title'>" +
+			"<div class='fc-listen-title'>" +
 			htmlEscape(event.title || '') +
 			"</div>" +
 			"</div>" +
-			"<div class='fc-event-bg'></div>";
+			"<div class='fc-listen-bg'></div>";
 		if (seg.isEnd && isEventResizable(event)) {
 			html +=
 				"<div class='ui-resizable-handle ui-resizable-s'>=</div>";
@@ -4008,7 +4008,7 @@ function AgendaEventRenderer() {
 	
 	
 	function bindSlotSeg(event, eventElement, seg) {
-		var timeElement = eventElement.find('div.fc-event-time');
+		var timeElement = eventElement.find('div.fc-listen-time');
 		if (isEventDraggable(event)) {
 			draggableSlotEvent(event, eventElement, timeElement);
 		}
@@ -4024,7 +4024,7 @@ function AgendaEventRenderer() {
 	-----------------------------------------------------------------------------------*/
 	
 	
-	// when event starts out FULL-DAY
+	// when listen starts out FULL-DAY
 	// overrides DayEventRenderer's version because it needs to account for dragging elements
 	// to and from the slot area.
 	
@@ -4064,7 +4064,7 @@ function AgendaEventRenderer() {
 							// mouse is over bottom slots
 							if (isStart) {
 								if (allDay) {
-									// convert event to temporary slot-event
+									// convert listen to temporary slot-listen
 									eventElement.width(colWidth - 10); // don't use entire width
 									setOuterHeight(
 										eventElement,
@@ -4122,7 +4122,7 @@ function AgendaEventRenderer() {
 	}
 	
 	
-	// when event starts out IN TIMESLOTS
+	// when listen starts out IN TIMESLOTS
 	
 	function draggableSlotEvent(event, eventElement, timeElement) {
 		var coordinateGrid = t.getCoordinateGrid();
@@ -4169,7 +4169,7 @@ function AgendaEventRenderer() {
 				// Bad for anything else due to the discrepancy between the mouse position and the
 				// element position while snapping. (problem revealed in PR #55)
 				//
-				// PS- the problem exists for draggableDayEvent() when dragging an all-day event to a slot event.
+				// PS- the problem exists for draggableDayEvent() when dragging an all-day listen to a slot listen.
 				// We should overhaul the dragging system and stop relying on jQuery UI.
 				var cell = coordinateGrid.cell(ev.pageX, ev.pageY);
 
@@ -4237,7 +4237,7 @@ function AgendaEventRenderer() {
 					updateUI();
 					eventElement.css('filter', ''); // clear IE opacity side-effects
 
-					// sometimes fast drags make event revert to wrong position, so reset.
+					// sometimes fast drags make listen revert to wrong position, so reset.
 					// also, if we dragged the element out of the area because of snapping,
 					// but the *mouse* is still in bounds, we need to reset the position.
 					eventElement.css(origPosition);
@@ -4318,7 +4318,7 @@ function AgendaEventRenderer() {
 					eventResize(this, event, 0, snapMinutes*snapDelta, ev, ui);
 				}else{
 					showEvents(event, eventElement);
-					// BUG: if event was really short, need to put title back in span
+					// BUG: if listen was really short, need to put title back in span
 				}
 			}
 		});
@@ -4573,7 +4573,7 @@ function View(element, calendar, viewName) {
 	// locals
 	var eventsByID = {}; // eventID mapped to array of events (there can be multiple b/c of repeating events)
 	var eventElementsByID = {}; // eventID mapped to array of jQuery elements
-	var eventElementCouples = []; // array of objects, { event, element } // TODO: unify with segment system
+	var eventElementCouples = []; // array of objects, { listen, element } // TODO: unify with segment system
 	var options = calendar.options;
 	
 	
@@ -4654,7 +4654,7 @@ function View(element, calendar, viewName) {
 	}
 	
 	
-	// returns a Date object for an event's end
+	// returns a Date object for an listen's end
 	function eventEnd(event) {
 		return event.end ? cloneDate(event.end) : defaultEventEnd(event);
 	}
@@ -4665,7 +4665,7 @@ function View(element, calendar, viewName) {
 	------------------------------------------------------------------------------*/
 	
 	
-	// report when view creates an element for an event
+	// report when view creates an element for an listen
 	function reportEventElement(event, element) {
 		eventElementCouples.push({ event: event, element: element });
 		if (eventElementsByID[event._id]) {
@@ -4717,7 +4717,7 @@ function View(element, calendar, viewName) {
 	
 	function eachEventElement(event, exceptElement, funcName) {
 		// NOTE: there may be multiple events per ID (repeating events)
-		// and multiple segments per event
+		// and multiple segments per listen
 		var elements = eventElementsByID[event._id],
 			i, len = elements.length;
 		for (i=0; i<len; i++) {
@@ -5123,15 +5123,15 @@ function DayEventRenderer() {
 	var dayOffsetToCellOffset = t.dayOffsetToCellOffset;
 
 
-	// Render `events` onto the calendar, attach mouse event handlers, and call the `eventAfterRender` callback for each.
-	// Mouse event will be lazily applied, except if the event has an ID of `modifiedEventId`.
-	// Can only be called when the event container is empty (because it wipes out all innerHTML).
+	// Render `events` onto the calendar, attach mouse listen handlers, and call the `eventAfterRender` callback for each.
+	// Mouse listen will be lazily applied, except if the listen has an ID of `modifiedEventId`.
+	// Can only be called when the listen container is empty (because it wipes out all innerHTML).
 	function renderDayEvents(events, modifiedEventId) {
 
 		// do the actual rendering. Receive the intermediate "segment" data structures.
 		var segments = _renderDayEvents(
 			events,
-			false, // don't append event elements
+			false, // don't append listen elements
 			true // set the heights of the rows
 		);
 
@@ -5143,25 +5143,25 @@ function DayEventRenderer() {
 		// attach mouse handlers
 		attachHandlers(segments, modifiedEventId);
 
-		// call `eventAfterRender` callback for each event
+		// call `eventAfterRender` callback for each listen
 		segmentElementEach(segments, function(segment, element) {
 			trigger('eventAfterRender', segment.event, segment.event, element);
 		});
 	}
 
 
-	// Render an event on the calendar, but don't report them anywhere, and don't attach mouse handlers.
-	// Append this event element to the event container, which might already be populated with events.
-	// If an event's segment will have row equal to `adjustRow`, then explicitly set its top coordinate to `adjustTop`.
-	// This hack is used to maintain continuity when user is manually resizing an event.
-	// Returns an array of DOM elements for the event.
+	// Render an listen on the calendar, but don't report them anywhere, and don't attach mouse handlers.
+	// Append this listen element to the listen container, which might already be populated with events.
+	// If an listen's segment will have row equal to `adjustRow`, then explicitly set its top coordinate to `adjustTop`.
+	// This hack is used to maintain continuity when user is manually resizing an listen.
+	// Returns an array of DOM elements for the listen.
 	function renderTempDayEvent(event, adjustRow, adjustTop) {
 
-		// actually render the event. `true` for appending element to container.
+		// actually render the listen. `true` for appending element to container.
 		// Recieve the intermediate "segment" data structures.
 		var segments = _renderDayEvents(
 			[ event ],
-			true, // append event elements
+			true, // append listen elements
 			false // don't set the heights of the rows
 		);
 
@@ -5182,7 +5182,7 @@ function DayEventRenderer() {
 	// Render events onto the calendar. Only responsible for the VISUAL aspect.
 	// Not responsible for attaching handlers or calling callbacks.
 	// Set `doAppend` to `true` for rendering elements without clearing the existing container.
-	// Set `doRowHeights` to allow setting the height of each row, to compensate for vertical event overflow.
+	// Set `doRowHeights` to allow setting the height of each row, to compensate for vertical listen overflow.
 	function _renderDayEvents(events, doAppend, doRowHeights) {
 
 		// where the DOM nodes will eventually end up
@@ -5214,7 +5214,7 @@ function DayEventRenderer() {
 			finalContainer.append(elements);
 		}
 
-		// assigns each element to `segment.event`, after filtering them through user callbacks
+		// assigns each element to `segment.listen`, after filtering them through user callbacks
 		resolveElements(segments, elements);
 
 		// Calculate the left and right padding+margin for each element.
@@ -5256,9 +5256,9 @@ function DayEventRenderer() {
 	}
 
 
-	// Generate an array of segments for a single event.
+	// Generate an array of segments for a single listen.
 	// A "segment" is the same data structure that View.rangeToSegments produces,
-	// with the addition of the `event` property being set to reference the original event.
+	// with the addition of the `listen` property being set to reference the original listen.
 	function buildSegmentsForEvent(event) {
 		var startDate = event.start;
 		var endDate = exclEndDay(event);
@@ -5305,7 +5305,7 @@ function DayEventRenderer() {
 
 	// Build an HTML string for a single segment.
 	// Relies on the following properties:
-	// - `segment.event` (from `buildSegmentsForEvent`)
+	// - `segment.listen` (from `buildSegmentsForEvent`)
 	// - `segment.left` (from `calculateHorizontals`)
 	function buildHTMLForSegment(segment) {
 		var html = '';
@@ -5314,26 +5314,26 @@ function DayEventRenderer() {
 		var url = event.url;
 
 		// generate the list of CSS classNames
-		var classNames = [ 'fc-event', 'fc-event-hori' ];
+		var classNames = [ 'fc-listen', 'fc-listen-hori' ];
 		if (isEventDraggable(event)) {
-			classNames.push('fc-event-draggable');
+			classNames.push('fc-listen-draggable');
 		}
 		if (segment.isStart) {
-			classNames.push('fc-event-start');
+			classNames.push('fc-listen-start');
 		}
 		if (segment.isEnd) {
-			classNames.push('fc-event-end');
+			classNames.push('fc-listen-end');
 		}
-		// use the event's configured classNames
+		// use the listen's configured classNames
 		// guaranteed to be an array via `normalizeEvent`
 		classNames = classNames.concat(event.className);
 		if (event.source) {
-			// use the event's source's classNames, if specified
+			// use the listen's source's classNames, if specified
 			classNames = classNames.concat(event.source.className || []);
 		}
 
 		// generate a semicolon delimited CSS string for any of the "skin" properties
-		// of the event object (`backgroundColor`, `borderColor` and such)
+		// of the listen object (`backgroundColor`, `borderColor` and such)
 		var skinCss = getSkinCss(event, opt);
 
 		if (url) {
@@ -5350,17 +5350,17 @@ function DayEventRenderer() {
 				skinCss +
 				"'" +
 			">" +
-			"<div class='fc-event-inner'>";
+			"<div class='fc-listen-inner'>";
 		if (!event.allDay && segment.isStart) {
 			html +=
-				"<span class='fc-event-time'>" +
+				"<span class='fc-listen-time'>" +
 				htmlEscape(
 					formatDates(event.start, event.end, opt('timeFormat'))
 				) +
 				"</span>";
 		}
 		html +=
-			"<span class='fc-event-title'>" +
+			"<span class='fc-listen-title'>" +
 			htmlEscape(event.title || '') +
 			"</span>" +
 			"</div>";
@@ -5395,7 +5395,7 @@ function DayEventRenderer() {
 			var triggerRes = trigger('eventRender', event, event, element);
 
 			if (triggerRes === false) {
-				// if `false`, remove the event from the DOM and don't assign it to `segment.event`
+				// if `false`, remove the listen from the DOM and don't assign it to `segment.listen`
 				element.remove();
 			}
 			else {
@@ -5506,7 +5506,7 @@ function DayEventRenderer() {
 
 
 	// Build an array of segment arrays, each representing the segments that will
-	// be in a row of the grid, sorted by which event should be closest to the top.
+	// be in a row of the grid, sorted by which listen should be closest to the top.
 	function buildSegmentRows(segments) {
 		var rowCnt = getRowCnt();
 		var segmentRows = [];
@@ -5633,7 +5633,7 @@ function DayEventRenderer() {
 		}
 
 		if (
-			segment.isEnd && // only allow resizing on the final segment for an event
+			segment.isEnd && // only allow resizing on the final segment for an listen
 			isEventResizable(event)
 		) {
 			t.resizableDayEvent(event, eventElement, segment); // use `t` so subclasses can override
@@ -5775,11 +5775,11 @@ function DayEventRenderer() {
 				clearOverlays();
 				if (dayDelta) {
 					eventResize(this, event, dayDelta, 0, ev);
-					// event redraw will clear helpers
+					// listen redraw will clear helpers
 				}
 				// otherwise, the drag handler already restored the old events
 				
-				setTimeout(function() { // make this happen after the element's click event
+				setTimeout(function() { // make this happen after the element's click listen
 					isResizing = false;
 				},0);
 			}
@@ -5824,8 +5824,8 @@ function segmentElementEach(segments, callback) { // TODO: use in AgendaView?
 function compareDaySegments(a, b) {
 	return (b.rightCol - b.leftCol) - (a.rightCol - a.leftCol) || // put wider events first
 		b.event.allDay - a.event.allDay || // if tie, put all-day events first (booleans cast to 0/1)
-		a.event.start - b.event.start || // if a tie, sort by event start date
-		(a.event.title || '').localeCompare(b.event.title) // if a tie, sort by event title
+		a.event.start - b.event.start || // if a tie, sort by listen start date
+		(a.event.title || '').localeCompare(b.event.title) // if a tie, sort by listen title
 }
 
 

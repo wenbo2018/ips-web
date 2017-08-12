@@ -217,7 +217,7 @@
                 this.cv = this.v;
             }
 
-            // binds configure event
+            // binds configure listen
             this.$
                 .bind("configure", cf)
                 .parent()

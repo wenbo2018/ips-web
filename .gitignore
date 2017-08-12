@@ -1,0 +1,17 @@
+*.classpath
+.classpath
+*.project
+**/.settings
+*.iml
+**/.idea
+.settings/
+target/
+target/*.iml
+.svn
+# ignore IDEA files
+*.iml
+*.ipr
+*.iws
+.idea
+*.DS_Store
+wed-home-parent.iml

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alidayu appkey="" appsecret="" url="https://eco.taobao.com/router/rest">
+    <template id="SMS_11380275" sign="个人测试" smstype="normal" extend=""></template>
+</alidayu>

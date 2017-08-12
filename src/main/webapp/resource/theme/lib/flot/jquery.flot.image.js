@@ -130,7 +130,7 @@ images (like Google Maps).
 
             // actually we should check img.complete, but it
             // appears to be a somewhat unreliable indicator in
-            // IE6 (false even after load event)
+            // IE6 (false even after load listen)
             if (!img || img.width <= 0 || img.height <= 0)
                 continue;
 

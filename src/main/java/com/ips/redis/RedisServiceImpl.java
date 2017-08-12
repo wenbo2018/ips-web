@@ -58,6 +58,21 @@ public class RedisServiceImpl implements RedisService {
         });
     }
 
+    @Override
+    public void addRedisData(final RedisKeyDto redisKeyDto, final int outTime) {
+        redisTemplate.execute(new RedisCallback<Object>() {
+            public Object doInRedis(RedisConnection connection)
+                    throws DataAccessException {
+                connection.set(
+                        redisTemplate.getStringSerializer().serialize(redisKeyDto.getKeys()),
+                        redisTemplate.getStringSerializer().serialize(redisKeyDto.getValues())
+                );
+                connection.expire(redisTemplate.getStringSerializer().serialize(redisKeyDto.getKeys()),outTime);
+                return null;
+            }
+        });
+    }
+
 
     public RedisTemplate<Serializable, Serializable> getRedisTemplate() {
         return redisTemplate;

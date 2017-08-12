@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ips-web.iml" filepath="$PROJECT_DIR$/ips-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../job/job.iml" filepath="$PROJECT_DIR$/../job/job.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../wed-redis-parent/wed-redis-parent.iml" filepath="$PROJECT_DIR$/../wed-redis-parent/wed-redis-parent.iml" />
     </modules>
   </component>
 </project>

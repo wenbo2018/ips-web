@@ -7,6 +7,7 @@ import com.ips.services.api.PositioningDataService;
 import com.ips.util.MapUtils;
 import com.sun.org.apache.bcel.internal.generic.POP;
 import com.sun.org.apache.regexp.internal.RE;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,10 +74,10 @@ public class PositioningDataWeb {
     @ResponseBody
     public Map<String,String> checkOutDataCollectRecord(@RequestBody Map<String, String> info) {
         Map<String,String> re=new HashMap<String,String>();
-        if (dataCollectRecordService.load(Integer.parseInt(info.get("POSITION")))==null) {
+        if (dataCollectRecordService.load(NumberUtils.toInt(info.get("POSITION")))==null) {
             DataCollectRecord dataCollectRecord=new DataCollectRecord();
-            dataCollectRecord.setPosition(Integer.parseInt(info.get("POSITION")));
-            dataCollectRecord.setDataType(Integer.parseInt(info.get("DATATYPE")));
+            dataCollectRecord.setPosition(NumberUtils.toInt(info.get("POSITION")));
+            dataCollectRecord.setDataType(NumberUtils.toInt(info.get("DATATYPE")));
             dataCollectRecord.setMobilePhone(info.get("MOBILEPHONE"));
             dataCollectRecordService.add(dataCollectRecord);
             re.put("code","200");

@@ -46,6 +46,7 @@ public class AdminWeb {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     private String login() {
 
+
         return "admin/index";
     }
 
@@ -113,12 +114,5 @@ public class AdminWeb {
         userService.delete(userId);
         return  "admin/UpdateUser";
     }
-
-
-
-
-
-
-
 
 }

@@ -76,7 +76,7 @@ $(function () {
                           xaxis: { min: ranges.xaxis.from, max: ranges.xaxis.to }
                       }));
 
-        // don't fire event on the overview to prevent eternal loop
+        // don't fire listen on the overview to prevent eternal loop
         overview.setSelection(ranges, true);
     });
     

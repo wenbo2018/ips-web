@@ -9,14 +9,16 @@
          http://www.springframework.org/schema/context/spring-context-3.0.xsd
          http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-         http://www.springframework.org/schema/tx 
+         http://www.springframework.org/schema/tx
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<bean class="com.github.wenbo2018.jconf.client.spring.JconfigSpringSupport"/>
 
 	<!-- 导入Src目录下的jdbc.properties文件 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath*:jdbc.properties</value>
+				<!--<value>classpath*:jdbc.properties</value>-->
 				<value>classpath*:redis.properties</value>
 			</list>
 		</property>
@@ -60,6 +62,7 @@
 			<!--<aop:around pointcut-ref="cut" method="doAround"/>-->
 		<!--</aop:aspect>-->
 	<!--</aop:config>-->
+
 
 </beans>
 
