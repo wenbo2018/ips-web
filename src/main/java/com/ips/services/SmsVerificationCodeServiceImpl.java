@@ -32,8 +32,8 @@ public class SmsVerificationCodeServiceImpl implements SmsVerificationCodeServic
         String rusult = null;
         String url = "http://gw.api.taobao.com/router/rest";
         // 成为开发者，创建应用后系统自动生成
-        String appkey = "23694650";
-        String secret = "4bf7b343a026e2bbb9da46a10af795f7";
+        String appkey = "********";
+        String secret = "*******";
         String code = getRandNum(6);
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();

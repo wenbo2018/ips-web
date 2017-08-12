@@ -12,7 +12,8 @@
          http://www.springframework.org/schema/tx
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<bean class="com.github.wenbo2018.jconf.client.spring.JconfigSpringSupport"/>
+
+	<bean id="jconfigSpringSupport" class="com.github.wenbo2018.jconf.client.spring.JconfigSpringSupport"/>
 
 	<!-- 导入Src目录下的jdbc.properties文件 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

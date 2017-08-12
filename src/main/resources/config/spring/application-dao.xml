@@ -12,7 +12,16 @@
          http://www.springframework.org/schema/tx 
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-
+    <!--如果采用集中配置的话下面这段话不需要-->
+	<!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+		<!--<property name="locations">-->
+			<!--<list>-->
+				<!--&lt;!&ndash;<value>classpath*:jdbc.properties</value>&ndash;&gt;-->
+				<!--<value>classpath*:jdbc.properties</value>-->
+			<!--</list>-->
+		<!--</property>-->
+		<!--<property name="ignoreUnresolvablePlaceholders" value="true" />-->
+	<!--</bean>-->
 
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

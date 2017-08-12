@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by shenwenbo on 2016/10/4.
  */
-public class PositioningData implements Serializable{
+public class PositioningData {
 
     private int id;
 
